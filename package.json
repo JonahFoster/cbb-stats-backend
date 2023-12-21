@@ -2,12 +2,12 @@
   "name": "college-baseball-stats",
   "version": "1.0.0",
   "description": "",
-  "main": "node.mjs",
+  "main": "node.js",
   "scripts": {
     "test": "echo \"No tests specified\"",
-    "start": "node node.mjs",
-    "start:prod": "node node.mjs",
-    "server": "node node.mjs"
+    "start": "node node.js",
+    "start:prod": "node node.js",
+    "server": "node node.js"
   },
   "keywords": [],
   "author": "",
