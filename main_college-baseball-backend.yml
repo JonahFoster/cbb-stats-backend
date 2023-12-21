@@ -1,4 +1,7 @@
-name: Build and deploy Node.js app to Azure Web App - college-baseball-stats-site
+# Docs for the Azure Web Apps Deploy action: https://github.com/Azure/webapps-deploy
+# More GitHub Actions for Azure: https://github.com/Azure/actions
+
+name: Build and deploy Node.js app to Azure Web App - college-baseball-backend
 
 on:
   push:
@@ -8,7 +11,7 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
 
     steps:
       - uses: actions/checkout@v4
@@ -18,19 +21,17 @@ jobs:
         with:
           node-version: '18.x'
 
-      - name: npm install
-        run: npm install
-
-      - name: Test Node.js server
-        run: npm run test --if-present
+      - name: npm install, build, and test
+        run: |
+          npm install
+          npm run build --if-present
+          npm run test --if-present
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v3
         with:
           name: node-app
-          path: |
-            node.mjs
-            package.json
+          path: .
 
   deploy:
     runs-on: ubuntu-latest
@@ -49,7 +50,7 @@ jobs:
         uses: azure/webapps-deploy@v2
         id: deploy-to-webapp
         with:
-          app-name: 'college-baseball-stats-site'
+          app-name: 'college-baseball-backend'
           slot-name: 'Production'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_D2E89FCB23E74483A4799BA8CBD5188C }}
           package: .
