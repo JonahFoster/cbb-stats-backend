@@ -1,16 +1,16 @@
-import express from 'express'
-import mysql from 'mysql2/promise'
-import dotenv from 'dotenv'
-import cors from 'cors'
-dotenv.config()
+const express = require('express');
+const mysql = require('mysql2/promise');
+const dotenv = require('dotenv');
+const cors = require('cors');
+dotenv.config();
 
-const app = express()
-const port = process.env.PORT || 3000
+const app = express();
+const port = process.env.PORT || 3000;
 
-app.use(cors())
+app.use(cors());
 
 const dbConfig = process.env.DB_CONNECTION;
-const CURRENT_SEASON = '2023'
+const CURRENT_SEASON = '2023';
 
 
 // Top 10 Home Run Hitters
@@ -292,5 +292,5 @@ app.get('/team/:school_name', async (req, res) => {
 });
 
 app.listen(port, () => {
-    console.log(`Server is running on http://localhost:${port}`)
-})
+    console.log(`Server is running on http://localhost:${port}`);
+});
